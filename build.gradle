@@ -1,19 +1,69 @@
 plugins {
-    id 'java'
+    id 'java-library'
+    id "io.qameta.allure" version "2.9.6"
 }
-
-group 'org.example'
-version '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
 }
 
-dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+def allureVersion = "2.17.3",
+    selenideVersion = "6.4.0",
+    junitVersion = "5.8.2",
+    slf4jVersion = "1.7.32",
+    thucydidesVersion = "0.9.275",
+    serenityBddVersion = "3.6.12",
+    serenityBddCoreVersion = "1.0.47"
+
+
+allure {
+    report {
+        version.set(allureVersion)
+    }
+    adapter {
+        aspectjWeaver.set(true)
+        frameworks {
+            junit5 {
+                adapterVersion.set(allureVersion)
+            }
+        }
+    }
 }
 
-test {
+dependencies {
+    // https://mvnrepository.com/artifact/net.serenity-bdd/serenity-screenplay
+    implementation 'net.serenity-bdd:serenity-screenplay:3.6.12'
+
+    implementation 'com.codeborne:selenide:6.11.2'
+    implementation 'com.composum.pages:composum-pages:1.4.1'
+    testImplementation(
+            "com.codeborne:selenide:$selenideVersion",
+            "io.qameta.allure:allure-selenide:$allureVersion",
+            "org.junit.jupiter:junit-jupiter:$junitVersion",
+            "org.slf4j:slf4j-simple:$slf4jVersion",
+            "net.thucydides:thucydides-core:$thucydidesVersion"
+    )
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+tasks.withType(Test) {
     useJUnitPlatform()
+
+    testLogging {
+        lifecycle {
+            events "started", "skipped", "failed", "standard_error", "standard_out"
+            exceptionFormat "short"
+        }
+    }
+}
+
+//запуск по тегу
+task demoqa_tests(type: Test) {
+    useJUnitPlatform{
+        includeTags "demoqa"
+//        excludeTags "simple"
+    }
 }

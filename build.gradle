@@ -13,7 +13,9 @@ def allureVersion = "2.17.3",
     slf4jVersion = "1.7.32",
     thucydidesVersion = "0.9.275",
     serenityBddVersion = "3.6.12",
-    serenityBddCoreVersion = "1.0.47"
+    serenityBddCoreVersion = "1.0.47",
+    aeonbitsVersion = "1.0.4"
+
 
 
 allure {
@@ -41,7 +43,11 @@ dependencies {
             "io.qameta.allure:allure-selenide:$allureVersion",
             "org.junit.jupiter:junit-jupiter:$junitVersion",
             "org.slf4j:slf4j-simple:$slf4jVersion",
-            "net.thucydides:thucydides-core:$thucydidesVersion"
+            "net.thucydides:thucydides-core:$thucydidesVersion",
+            "org.aeonbits.owner:owner:$aeonbitsVersion",
+            // https://mvnrepository.com/artifact/org.aeonbits.owner/owner-java8
+            "org.aeonbits.owner:owner-java8:1.0.12"
+
     )
 }
 

@@ -1,14 +1,15 @@
-package steps;
+package steps.ElementsSteps;
+
 import net.thucydides.core.annotations.Step;
 import page_object.pages.ElementsPage;
 
-public class ElementsSteps {
+public class TextBoxSteps {
 
-    ElementsPage elementsPage;
+    ElementsPage elementsPage = new ElementsPage();
 
     @Step("In field for full name write full name ({0})")
     public void fillFullName(String fullName) {
-       elementsPage.fillFullName(fullName);
+        elementsPage.fillFullName(fullName);
     }
 
     @Step("In field for email write email ({0})")
@@ -23,7 +24,7 @@ public class ElementsSteps {
 
     @Step("In field for current address write current address ({0})")
     public void fillPermanentAddress(String permanentAddress) {
-        elementsPage.fillCurrentAddress(permanentAddress);
+        elementsPage.fillPermanentAddress(permanentAddress);
     }
 
     @Step("Click to submit button")
@@ -31,4 +32,8 @@ public class ElementsSteps {
         elementsPage.clickSubmitBtn();
     }
 
+    @Step("Checking the content of a correctly completed form")
+    public void formShouldHaveAllInfo(String fullName, String email, String currentAddress, String permanentAddress) {
+        elementsPage.formShouldHaveAllInfo(fullName, email, currentAddress, permanentAddress);
+    }
 }

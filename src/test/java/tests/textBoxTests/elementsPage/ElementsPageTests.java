@@ -1,15 +1,17 @@
-package tests.textBoxTests.elements;
+package tests.textBoxTests.elementsPage;
 
 import net.thucydides.core.annotations.Title;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import steps.ElementsSteps.TextBoxSteps;
 import tests.TestBase;
 
 
-public class ElementsTests extends TestBase {
+public class ElementsPageTests extends TestBase {
     TextBoxSteps textBoxSteps = new TextBoxSteps();
     @Test
+    @Tag("testSelenoid")
     @DisplayName("Successful fill elements form test")
     @Title("Positive test")
     void fillFormTest() {

@@ -68,14 +68,14 @@ tasks.withType(Test) {
 //запуск по тегу (таска)
 task demoqa_tests(type: Test) {
     useJUnitPlatform{
-        includeTags "demoqa"
+        includeTags "test"
 //        excludeTags "simple"
     }
 }
 
-  task test5(type: Test) {
+  task testSelenoid(type: Test) {
     useJUnitPlatform{
-        includeTags "test5"
+        includeTags "testSelenoid"
     }
 }
 

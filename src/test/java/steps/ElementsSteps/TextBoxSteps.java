@@ -36,4 +36,9 @@ public class TextBoxSteps {
     public void formShouldHaveAllInfo(String fullName, String email, String currentAddress, String permanentAddress) {
         elementsPage.formShouldHaveAllInfo(fullName, email, currentAddress, permanentAddress);
     }
+
+    @Step
+    public void shouldBeErrorEmailField(){
+        elementsPage.shouldBeErrorEmailField();
+    }
 }

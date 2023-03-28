@@ -2,9 +2,11 @@ package data_provider;
 
 import com.codeborne.selenide.Config;
 
-public interface App extends Config {
+public class App {
 
-//todo дописать методы с пропертями
-//    @Key("text_box_url")
-//    String textBoxUrl();
+    public static String getSelenoidUrl(Object selenoidLogin, Object selenoidPassword) {
+        return "https://" + selenoidLogin + ":" + selenoidPassword + "@selenoid.autotests.cloud/wd/hub";
+    }
+
+
 }

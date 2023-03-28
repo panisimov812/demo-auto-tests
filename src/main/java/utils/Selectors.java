@@ -8,11 +8,12 @@ public class Selectors {
         return By.cssSelector("#" + id);
     }
 
-//    public static By byClass(String classValue) {
-//        return By.className("div[class='" + classValue + "']");
-//    }
+    public static By byClass(String className) {
+        return By.cssSelector("[class='" + className + "'" + "]");
+    }
 
     public static By byCss(String css) {
         return By.cssSelector(css);
     }
+
 }

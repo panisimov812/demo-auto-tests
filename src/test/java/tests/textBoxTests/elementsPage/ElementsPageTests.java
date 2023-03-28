@@ -1,6 +1,7 @@
 package tests.textBoxTests.elementsPage;
 
 import net.thucydides.core.annotations.Title;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -11,11 +12,11 @@ import tests.TestBase;
 public class ElementsPageTests extends TestBase {
     TextBoxSteps textBoxSteps = new TextBoxSteps();
     @Test
-    @Tag("testSelenoid")
+    @Tag("test")
     @DisplayName("Successful fill elements form test")
     @Title("Positive test")
     void fillFormTest() {
-        String fullName = "Petr Anisimov";
+        String fullName = "Name Lastname";
         String email = "test@email.ru";
         String currentAddress = "Street 1, 123123, h3";
         String permanentAddress = "Street 11, 1231, h13 flat 12";
@@ -27,5 +28,20 @@ public class ElementsPageTests extends TestBase {
         textBoxSteps.fillPermanentAddress(permanentAddress);
         textBoxSteps.clickSubmitBtn();
         textBoxSteps.formShouldHaveAllInfo(fullName,email,currentAddress,permanentAddress);
+    }
+
+
+    @Test
+    @Disabled
+    @Tag("test1")
+    @DisplayName("Unsuccessful fill elements form test, none email")
+    @Title("Negative test")
+    void errorEmailFormTest() {
+
+        String email = "test@";
+
+        textBoxSteps.fillEmail(email);
+        textBoxSteps.clickSubmitBtn();
+        textBoxSteps.shouldBeErrorEmailField();
     }
 }

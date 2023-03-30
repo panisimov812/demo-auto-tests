@@ -27,9 +27,20 @@ public class ElementsPageTests extends TestBase {
         textBoxSteps.fillCurrentAddress(currentAddress);
         textBoxSteps.fillPermanentAddress(permanentAddress);
         textBoxSteps.clickSubmitBtn();
-        textBoxSteps.formShouldHaveAllInfo(fullName,email,currentAddress,permanentAddress);
+        textBoxSteps.formShouldHaveInfo(fullName,email,currentAddress,permanentAddress);
     }
 
+    @Test
+    @Tag("smoke")
+    @DisplayName("Successful only name field elements form test")
+    @Title("Positive test")
+    void fillFormOnlyNameTest() {
+        String fullName = "Name Lastname";
+
+        textBoxSteps.fillFullName(fullName);
+        textBoxSteps.clickSubmitBtn();
+        textBoxSteps.formShouldHaveInfo(fullName);
+    }
 
     @Test
     @Disabled

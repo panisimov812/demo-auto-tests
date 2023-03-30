@@ -8,13 +8,12 @@ repositories {
 }
 
 def allureVersion = "2.17.3",
-    selenideVersion = "6.4.0",
     junitVersion = "5.8.2",
     slf4jVersion = "1.7.32",
     thucydidesVersion = "0.9.275",
-    serenityBddVersion = "3.6.12",
     serenityBddCoreVersion = "3.6.21",
-    aeonbitsVersion = "1.0.4"
+    aeonbitsVersion = "1.0.4",
+    ownerVersion = "1.0.12"
 
 
 
@@ -33,17 +32,13 @@ allure {
 }
 
 dependencies {
-    // https://mvnrepository.com/artifact/net.serenity-bdd/serenity-screenplay
     implementation 'net.serenity-bdd:serenity-screenplay:3.6.12'
-
     implementation 'com.codeborne:selenide:6.11.2'
-    implementation 'com.composum.pages:composum-pages:1.4.1'
     testImplementation(
-            "com.codeborne:selenide:$selenideVersion",
             "io.qameta.allure:allure-selenide:$allureVersion",
             "org.junit.jupiter:junit-jupiter:$junitVersion",
             "org.slf4j:slf4j-simple:$slf4jVersion",
-            "org.aeonbits.owner:owner:1.0.12",
+            "org.aeonbits.owner:owner:$ownerVersion",
             "net.thucydides:thucydides-core:$thucydidesVersion",
             "org.aeonbits.owner:owner:$aeonbitsVersion",
             "net.serenity-bdd:serenity-core:$serenityBddCoreVersion"
@@ -67,7 +62,6 @@ tasks.withType(Test) {
 }
 
 //запуск по тегу (таска)
-
 task test_fill_elements(type: Test) {
     useJUnitPlatform{
         includeTags "test"
@@ -77,6 +71,18 @@ task test_fill_elements(type: Test) {
 task test1(type: Test) {
     useJUnitPlatform{
         includeTags "test1"
+    }
+}
+
+task test2(type: Test) {
+    useJUnitPlatform{
+        includeTags "test2"
+    }
+}
+
+task smoke(type: Test) {
+    useJUnitPlatform{
+        includeTags "smoke"
     }
 }
 

@@ -33,8 +33,13 @@ public class TextBoxSteps {
     }
 
     @Step("Checking the content of a correctly completed form")
-    public void formShouldHaveAllInfo(String fullName, String email, String currentAddress, String permanentAddress) {
-        elementsPage.formShouldHaveAllInfo(fullName, email, currentAddress, permanentAddress);
+    public void formShouldHaveInfo(String fullName) {
+        elementsPage.formShouldHaveInfo(fullName);
+    }
+
+    @Step("Checking the content of a correctly completed form")
+    public void formShouldHaveInfo(String fullName, String email, String currentAddress, String permanentAddress) {
+        elementsPage.formShouldHaveInfo(fullName, email, currentAddress, permanentAddress);
     }
 
     @Step

@@ -1,17 +1,12 @@
 package page_object.pages;
 
-import net.serenitybdd.core.pages.RenderedPageObjectView;
 import org.openqa.selenium.By;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import utils.Selectors;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
-import static org.apache.commons.io.FileUtils.waitFor;
 
 
 public class ElementsPage {
@@ -45,8 +40,12 @@ public class ElementsPage {
         $(SUBMIT_BTN).click();
     }
 
-    public void formShouldHaveAllInfo(String fullName, String email, String currentAddress, String permanentAddress) {
+    public void formShouldHaveInfo(String fullName, String email, String currentAddress, String permanentAddress) {
         $(COMPLETE_FORM).shouldHave(text(fullName), text(email), text(currentAddress), text(permanentAddress));
+    }
+
+    public void formShouldHaveInfo(String fullName) {
+        $(COMPLETE_FORM).shouldHave(text(fullName));
     }
 
     //todo дописать метод поиска элемента

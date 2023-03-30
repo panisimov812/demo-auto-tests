@@ -11,44 +11,99 @@ import tests.TestBase;
 
 public class ElementsPageTests extends TestBase {
     TextBoxSteps textBoxSteps = new TextBoxSteps();
+
     @Test
-    @Tag("test")
-    @DisplayName("Successful fill elements form test")
+    @DisplayName("Successful completion all fields")
     @Title("Positive test")
-    void fillFormTest() {
+    void fillAllFormTest() {
         String fullName = "Name Lastname";
         String email = "test@email.ru";
         String currentAddress = "Street 1, 123123, h3";
         String permanentAddress = "Street 11, 1231, h13 flat 12";
-
 
         textBoxSteps.fillFullName(fullName);
         textBoxSteps.fillEmail(email);
         textBoxSteps.fillCurrentAddress(currentAddress);
         textBoxSteps.fillPermanentAddress(permanentAddress);
         textBoxSteps.clickSubmitBtn();
-        textBoxSteps.formShouldHaveInfo(fullName,email,currentAddress,permanentAddress);
+        textBoxSteps.completedFormShouldHaveInfo(fullName, email, currentAddress, permanentAddress);
     }
 
     @Test
-    @Tag("smoke")
-    @DisplayName("Successful only name field elements form test")
+    @DisplayName("Successful completion of the field - full name and current address")
     @Title("Positive test")
-    void fillFormOnlyNameTest() {
+    void fillOnlyFullNameAndCurrentAddressTest() {
+        String fullName = "Name Lastname";
+        String currentAddress = "Street 1, 123123, h3";
+
+        textBoxSteps.fillFullName(fullName);
+        textBoxSteps.fillCurrentAddress(currentAddress);
+        textBoxSteps.clickSubmitBtn();
+        textBoxSteps.completedFormShouldHaveInfo(fullName, currentAddress);
+    }
+
+    @Test
+    @DisplayName("Successful completion of the field - full name,current and permanent address")
+    @Title("Positive test")
+    void fillOnlyFullNameAndCurrentAndPermanentAddressTest() {
+        String fullName = "Name Lastname";
+        String currentAddress = "Street 1, 123123, h3";
+        String permanentAddress = "Street 11, 1231, h13 flat 12";
+
+        textBoxSteps.fillFullName(fullName);
+        textBoxSteps.fillCurrentAddress(currentAddress);
+        textBoxSteps.fillPermanentAddress(permanentAddress);
+        textBoxSteps.clickSubmitBtn();
+        textBoxSteps.completedFormShouldHaveInfo(fullName, currentAddress, permanentAddress);
+    }
+
+    @Test
+    @Tag("test1")
+    @DisplayName("Successful completion of the field - full name")
+    @Title("Positive test")
+    void fillOnlyFullNameTest() {
         String fullName = "Name Lastname";
 
         textBoxSteps.fillFullName(fullName);
         textBoxSteps.clickSubmitBtn();
-        textBoxSteps.formShouldHaveInfo(fullName);
+        textBoxSteps.completedFormShouldHaveFullName(fullName);
     }
 
     @Test
-    @Disabled
-    @Tag("test1")
+    @DisplayName("Successful completion of the field - current address")
+    @Title("Positive test")
+    void fillOnlyCurrentAddressTest() {
+        String currentAddress = "Street 1, 123123, h3";
+
+        textBoxSteps.fillCurrentAddress(currentAddress);
+        textBoxSteps.clickSubmitBtn();
+        textBoxSteps.completedFormShouldHaveCurrentAddress(currentAddress);
+    }
+
+    @Test
+    @DisplayName("Successful completion of the field - permanent address")
+    @Title("Positive test")
+    void fillOnlyPermanentAddressTest() {
+        String permanentAddress = "Street 11, 1231, h13 flat 12";
+
+        textBoxSteps.fillPermanentAddress(permanentAddress);
+        textBoxSteps.clickSubmitBtn();
+        textBoxSteps.completedFormShouldHavePermanentAddress(permanentAddress);
+    }
+
+    @Test
+    @DisplayName("Missing completed form after clicking")
+    @Title("Negative test")
+    void missingFormTest() {
+
+        textBoxSteps.clickSubmitBtn();
+        textBoxSteps.emptyFormDoNotShow();
+    }
+
+    @Test
     @DisplayName("Unsuccessful fill elements form test, none email")
     @Title("Negative test")
-    void errorEmailFormTest() {
-
+    public void errorEmailFormTest() {
         String email = "test@";
 
         textBoxSteps.fillEmail(email);

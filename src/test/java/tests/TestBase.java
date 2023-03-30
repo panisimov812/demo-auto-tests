@@ -14,7 +14,6 @@ import static io.qameta.allure.Allure.step;
 
 public class TestBase {
 
-
     @BeforeAll
     static void setUp() {
 
@@ -24,7 +23,7 @@ public class TestBase {
         Configuration.baseUrl = config.baseUrl();
         Configuration.browserSize = config.browserSizeConfig();
         //switch on for selenoid remote and add login and pass
-        //  Configuration.remote = App.getSelenoidUrl(config.selenoidLogin(),config.selenoidPassword());
+        //Configuration.remote = App.getSelenoidUrl(config.selenoidLogin(),config.selenoidPassword());
         // SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
 
         step("Open text-box form", () -> {

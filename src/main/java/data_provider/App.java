@@ -1,7 +1,5 @@
 package data_provider;
 
-import com.codeborne.selenide.Config;
-
 public class App {
 
     public static String getSelenoidUrl(Object selenoidLogin, Object selenoidPassword) {

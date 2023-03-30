@@ -22,7 +22,7 @@ public class TextBoxSteps {
         elementsPage.fillCurrentAddress(currentAddress);
     }
 
-    @Step("In field for current address write current address ({0})")
+    @Step("In field for permanent address write permanent address ({0})")
     public void fillPermanentAddress(String permanentAddress) {
         elementsPage.fillPermanentAddress(permanentAddress);
     }
@@ -32,18 +32,45 @@ public class TextBoxSteps {
         elementsPage.clickSubmitBtn();
     }
 
-    @Step("Checking the content of a correctly completed form")
-    public void formShouldHaveInfo(String fullName) {
-        elementsPage.formShouldHaveInfo(fullName);
+    @Step("Checking the completed form for availability - full name ({0})")
+    public void completedFormShouldHaveFullName(String fullName) {
+        elementsPage.completedFormShouldHaveFullName(fullName);
     }
 
-    @Step("Checking the content of a correctly completed form")
-    public void formShouldHaveInfo(String fullName, String email, String currentAddress, String permanentAddress) {
-        elementsPage.formShouldHaveInfo(fullName, email, currentAddress, permanentAddress);
+    @Step("Checking the completed form for availability - current address ({0})")
+    public void completedFormShouldHaveCurrentAddress(String currentAddress) {
+        elementsPage.completedFormShouldHaveCurrentAddress(currentAddress);
     }
 
-    @Step
-    public void shouldBeErrorEmailField(){
+    @Step("Checking the completed form for availability - permanent address ({0})")
+    public void completedFormShouldHavePermanentAddress(String permanentAddress) {
+        elementsPage.completedFormShouldHavePermanentAddress(permanentAddress);
+    }
+
+    @Step("Checking the completed form for availability - full name({0}) and current address ({1})")
+    public void completedFormShouldHaveInfo(String fullName, String currentAddress) {
+        elementsPage.completedFormShouldHaveInfo(fullName, currentAddress);
+    }
+
+    @Step("Checking the completed form for availability - full name({0})," +
+            " current address ({1}) and permanent address({2})")
+    public void completedFormShouldHaveInfo(String fullName, String currentAddress, String permanentAddress) {
+        elementsPage.completedFormShouldHaveInfo(fullName, currentAddress, permanentAddress);
+    }
+
+    @Step("Checking the completed form for availability - full name({0})," +
+            "email({1}), current address ({2}) and permanent address({3})")
+    public void completedFormShouldHaveInfo(String fullName, String email, String currentAddress, String permanentAddress) {
+        elementsPage.completedFormShouldHaveInfo(fullName, email, currentAddress, permanentAddress);
+    }
+
+    @Step("Checking that empty email fields to border red")
+    public void shouldBeErrorEmailField() {
         elementsPage.shouldBeErrorEmailField();
+    }
+
+    @Step("Checking that empty form do not show")
+    public void emptyFormDoNotShow() {
+        elementsPage.emptyFormDoNotShow();
     }
 }

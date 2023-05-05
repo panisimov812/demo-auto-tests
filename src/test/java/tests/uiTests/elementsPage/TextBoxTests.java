@@ -1,20 +1,20 @@
-package tests.textBoxTests.elementsPage;
+package tests.uiTests.elementsPage;
 
 import net.thucydides.core.annotations.Title;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import steps.ElementsSteps.TextBoxSteps;
-import tests.TestBase;
+import tests.uiTests.TestBase;
 
 
-public class ElementsPageTests extends TestBase {
-    TextBoxSteps textBoxSteps = new TextBoxSteps();
+public class TextBoxTests extends TestBase {
+
 
     @Test
     @DisplayName("Successful completion all fields")
     @Title("Positive test")
+    @Tag("test_elements_page")
     void fillAllFormTest() {
         String fullName = "Name Lastname";
         String email = "test@email.ru";
@@ -30,6 +30,7 @@ public class ElementsPageTests extends TestBase {
     }
 
     @Test
+    @Tag("test_elements_page")
     @DisplayName("Successful completion of the field - full name and current address")
     @Title("Positive test")
     void fillOnlyFullNameAndCurrentAddressTest() {
@@ -58,7 +59,7 @@ public class ElementsPageTests extends TestBase {
     }
 
     @Test
-    @Tag("test1")
+    @Tag("test_elements_page")
     @DisplayName("Successful completion of the field - full name")
     @Title("Positive test")
     void fillOnlyFullNameTest() {

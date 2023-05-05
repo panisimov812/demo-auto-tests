@@ -2,6 +2,7 @@ package page_object.pages;
 
 import org.openqa.selenium.By;
 
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import utils.Selectors;
 
 import static com.codeborne.selenide.Condition.*;

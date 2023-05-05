@@ -1,20 +1,27 @@
 plugins {
     id 'java-library'
-    id "io.qameta.allure" version "2.9.6"
+    id "io.qameta.allure" version "2.10.0"
 }
 
 repositories {
     mavenCentral()
 }
 
-def allureVersion = "2.17.3",
-    junitVersion = "5.8.2",
-    slf4jVersion = "1.7.32",
+def allureVersion = "2.21.0",
+    junitVersion = "5.9.2",
+    slf4jVersion = "2.0.5",
     thucydidesVersion = "0.9.275",
     serenityBddCoreVersion = "3.6.21",
-    aeonbitsVersion = "1.0.4",
-    ownerVersion = "1.0.12"
+    aeonbitsVersion = "1.0.12",
+    ownerVersion = "1.0.12",
+    restAssuredVersion = "5.3.0",
+    hamcrestVersion = "2.2",
+    assertjCoreVersion = "3.21.0",
+    jacksonCoreVersion = "2.13.1",
+    jacksonDatabindVersion = "2.13.3",
 
+    serenityScreenplayVersion = "3.6.12",
+    codeborneSelenide = "6.13.1"
 
 
 allure {
@@ -32,16 +39,23 @@ allure {
 }
 
 dependencies {
-    implementation 'net.serenity-bdd:serenity-screenplay:3.6.12'
-    implementation 'com.codeborne:selenide:6.11.2'
+    implementation "net.serenity-bdd:serenity-screenplay:$serenityScreenplayVersion",
+                   "com.codeborne:selenide:$codeborneSelenide"
+
     testImplementation(
             "io.qameta.allure:allure-selenide:$allureVersion",
+            "io.qameta.allure:allure-rest-assured:$allureVersion",
             "org.junit.jupiter:junit-jupiter:$junitVersion",
             "org.slf4j:slf4j-simple:$slf4jVersion",
             "org.aeonbits.owner:owner:$ownerVersion",
             "net.thucydides:thucydides-core:$thucydidesVersion",
-            "org.aeonbits.owner:owner:$aeonbitsVersion",
-            "net.serenity-bdd:serenity-core:$serenityBddCoreVersion"
+            "net.serenity-bdd:serenity-core:$serenityBddCoreVersion",
+            "io.rest-assured:rest-assured:$restAssuredVersion",
+            "org.hamcrest:hamcrest:$hamcrestVersion",
+            "io.rest-assured:json-schema-validator:$restAssuredVersion",
+            "org.assertj:assertj-core:$assertjCoreVersion",
+            "com.fasterxml.jackson.core:jackson-core:$jacksonCoreVersion",
+            "com.fasterxml.jackson.core:jackson-databind:$jacksonDatabindVersion"
     )
 }
 
@@ -50,7 +64,7 @@ tasks.withType(JavaCompile) {
 }
 
 tasks.withType(Test) {
-     systemProperties(System.getProperties())
+    systemProperties(System.getProperties())
     useJUnitPlatform()
 
     testLogging {
@@ -61,28 +75,33 @@ tasks.withType(Test) {
     }
 }
 
-//запуск по тегу (таска)
-task test_fill_elements(type: Test) {
-    useJUnitPlatform{
-        includeTags "test"
+//run by tags
+tasks.withType(Test) {
+    useJUnitPlatform()
+}
+
+task test_elements_page(type: Test) {
+    useJUnitPlatform {
+        includeTags "test_elements_page"
     }
 }
 
-task test1(type: Test) {
-    useJUnitPlatform{
-        includeTags "test1"
+task reqres_api_test(type: Test) {
+    useJUnitPlatform {
+        includeTags "reqres_api_test"
     }
 }
 
-task test2(type: Test) {
-    useJUnitPlatform{
-        includeTags "test2"
+task demoshop_api_test(type: Test) {
+    useJUnitPlatform {
+        includeTags "demoshop_api_test"
     }
 }
 
-task smoke(type: Test) {
-    useJUnitPlatform{
-        includeTags "smoke"
+task selenoid_api_test(type: Test) {
+    useJUnitPlatform {
+        includeTags "selenoid_api_test"
     }
 }
+
 
